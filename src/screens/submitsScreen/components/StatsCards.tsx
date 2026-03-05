@@ -1,14 +1,9 @@
-const stats = [
-  { value: '89', label: 'Public hoàn thành', color: 'text-accent' },
-  { value: '12', label: 'Private chờ xử lý', color: 'text-orange-500' },
-  { value: '5', label: 'Chờ upload điểm', color: 'text-blue-500' },
-  { value: '24', label: 'Private hoàn thành', color: 'text-foreground' },
-];
+import { MOCK_STATS } from "../constants";
 
 export default function StatsCards() {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-      {stats.map((stat, index) => (
+      {MOCK_STATS.map((stat, index) => (
         <div
           key={index}
           className="bg-card border border-border rounded-lg p-3 sm:p-6 hover:border-accent/50 transition-colors"

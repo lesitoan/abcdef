@@ -1,17 +1,12 @@
 'use client';
 
 import { Mail, FileText, Upload, Trophy } from 'lucide-react';
-import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { NAV_ITEMS } from '@/constants/nav';
 
 export default function AdminSidebar() {
-  const [activeItem, setActiveItem] = useState('submissions');
-
-  const menuItems = [
-    { id: 'submissions', icon: Mail, label: 'Tất cả Submissions', count: 47 },
-    { id: 'forms', icon: FileText, label: 'Private Test Forms', count: 18 },
-    { id: 'upload', icon: Upload, label: 'Upload Điểm', count: 3 },
-    { id: 'leaderboard', icon: Trophy, label: 'Duyệt Leaderboard', count: 0 },
-  ];
+  const pathname = usePathname();
 
   return (
     <aside className="w-52 bg-sidebar border-r border-sidebar-border overflow-y-auto">
@@ -20,13 +15,13 @@ export default function AdminSidebar() {
           ADMIN PANEL
         </h3>
         <nav className="space-y-1 sm:space-y-2">
-          {menuItems.map((item) => {
+          {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
-            const isActive = activeItem === item.id;
+            const isActive = pathname === item.path;
             return (
-              <button
-                key={item.id}
-                onClick={() => setActiveItem(item.id)}
+              <Link
+                key={item.path}
+                href={item.path}
                 className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition-colors text-sm ${isActive
                     ? 'bg-sidebar-accent text-sidebar-accent-foreground'
                     : 'text-sidebar-foreground hover:bg-sidebar-accent/50'
@@ -44,7 +39,7 @@ export default function AdminSidebar() {
                     {item.count}
                   </span>
                 )}
-              </button>
+              </Link>
             );
           })}
         </nav>

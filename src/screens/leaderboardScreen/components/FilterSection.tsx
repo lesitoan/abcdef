@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { FilterDropdown } from '@/components/ui/filter-dropdown';
-import { STATUS_OPTIONS, TYPE_OPTIONS } from '../constants';
+import { LEADERBOARD_OPTIONS, STATUS_OPTIONS } from '../constants';
 
 export default function FilterSection() {
   const [selectedType, setSelectedType] = useState<string>('all');
@@ -26,7 +26,7 @@ export default function FilterSection() {
       <div className="flex gap-3 flex-col sm:flex-row md:flex-row">
         <FilterDropdown
           label="Tất cả loại"
-          options={TYPE_OPTIONS}
+          options={LEADERBOARD_OPTIONS}
           selectedValue={selectedType}
           onSelect={setSelectedType}
         />
