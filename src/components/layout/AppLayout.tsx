@@ -42,7 +42,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
         {/* Mobile sidebar - full height on mobile */}
         {mobileMenuOpen && (
-          <div className="fixed inset-y-16 left-0 z-40 md:hidden">
+          <div className="fixed top-16 left-0 right-0 bottom-0 z-40 md:hidden">
             <ResizableSidebar 
               isCollapsed={false} 
               onToggleCollapse={() => setMobileMenuOpen(false)} 

@@ -59,7 +59,7 @@ export default function ResizableSidebar({ isCollapsed, onToggleCollapse }: { is
 
   if (isCollapsed) {
     return (
-      <div className="w-20 bg-sidebar border-r border-sidebar-border overflow-hidden flex flex-col items-center py-4 gap-2">
+      <div className="w-20 h-full bg-sidebar border-r border-sidebar-border overflow-hidden flex flex-col items-center py-4 gap-2">
         {/* Toggle expand button */}
         <button
           onClick={onToggleCollapse}
@@ -96,8 +96,8 @@ export default function ResizableSidebar({ isCollapsed, onToggleCollapse }: { is
   return (
     <div
       ref={sidebarRef}
-      className="bg-sidebar border-r border-sidebar-border overflow-hidden flex flex-col relative group"
-      style={{ width: `${width}px`, minHeight: '100%' }}
+      className="h-full bg-sidebar border-r border-sidebar-border overflow-hidden flex flex-col relative group"
+      style={{ width: `${width}px` }}
     >
       <div className="flex-1 overflow-y-auto p-3 sm:p-4">
         <div className="flex items-center justify-between mb-3 sm:mb-4">
