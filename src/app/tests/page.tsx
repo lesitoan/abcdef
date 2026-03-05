@@ -1,9 +1,7 @@
+import TestsScreen from '@/screens/testsScreen';
+
 function TestPage() {
-    return (
-        <div>
-            <h1>Test</h1>
-        </div>
-    );
+    return <TestsScreen />;
 }
 
 export default TestPage;

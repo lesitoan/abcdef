@@ -1,9 +1,7 @@
+import LeaderboardScreen from '@/screens/leaderboardScreen';
+
 function LeaderboardPage() {
-    return (
-        <div>
-            <h1>Leaderboard</h1>
-        </div>
-    );
+    return <LeaderboardScreen />;
 }
 
 export default LeaderboardPage;
