@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export default function SignupForm() {
+  const router = useRouter();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,10 +27,14 @@ export default function SignupForm() {
     setIsLoading(true);
 
     try {
-      // TODO: Implement actual signup logic
-      console.log('Signup attempt:', { fullName, email, password });
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 500));
+      // TODO: Implement actual signup API call
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      // Store auth token (replace with actual token from API)
+      localStorage.setItem('auth_token', `token_${Date.now()}`);
+      
+      // Redirect to dashboard
+      router.push('/submits');
     } catch (err) {
       setError('Đăng ký thất bại. Vui lòng thử lại.');
     } finally {

@@ -1,12 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
 export default function ForgotPasswordForm() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -53,18 +55,19 @@ export default function ForgotPasswordForm() {
             <p className="text-sm text-muted-foreground">
               Chúng tôi đã gửi hướng dẫn đặt lại mật khẩu đến <span className="font-medium text-foreground">{email}</span>
             </p>
+            <p className="text-xs text-muted-foreground pt-2">
+              Quay lại đăng nhập tự động trong 5 giây...
+            </p>
           </div>
 
-          {/* Back to Login */}
-          <div className="mt-8 pt-8 border-t border-border">
-            <Link
-              href="/(auth)/login"
-              className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors font-medium text-sm group"
-            >
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-              Quay lại đăng nhập
-            </Link>
-          </div>
+          {/* Back to Login Button */}
+          <button
+            onClick={() => router.push('/(auth)/login')}
+            className="w-full h-10 bg-accent text-accent-foreground hover:bg-accent/90 font-medium rounded-lg flex items-center justify-center gap-2 transition-colors mt-8"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Quay lại đăng nhập
+          </button>
         </div>
       </div>
     );

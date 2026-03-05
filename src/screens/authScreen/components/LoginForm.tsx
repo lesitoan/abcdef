@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export default function LoginForm() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -17,10 +19,22 @@ export default function LoginForm() {
     setIsLoading(true);
 
     try {
-      // TODO: Implement actual login logic
-      console.log('Login attempt:', { email, password });
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 500));
+      // Validate inputs
+      if (!email || !password) {
+        setError('Vui lòng nhập email và mật khẩu.');
+        setIsLoading(false);
+        return;
+      }
+
+      // TODO: Implement actual login API call
+      // For now, simulate successful login with any valid email/password
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      // Store auth token (replace with actual token from API)
+      localStorage.setItem('auth_token', `token_${Date.now()}`);
+      
+      // Redirect to dashboard
+      router.push('/submits');
     } catch (err) {
       setError('Đăng nhập thất bại. Vui lòng thử lại.');
     } finally {
