@@ -1,9 +1,17 @@
 'use client';
 
-import { Menu, Sun, Moon, User } from 'lucide-react';
+import { Menu, Sun, Moon, User, ChevronLeft } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-export default function TopHeader({ onMenuClick }: { onMenuClick: () => void }) {
+export default function TopHeader({ 
+  onMenuClick, 
+  onDesktopToggle,
+  desktopSidebarCollapsed
+}: { 
+  onMenuClick: () => void;
+  onDesktopToggle: () => void;
+  desktopSidebarCollapsed: boolean;
+}) {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
@@ -59,6 +67,13 @@ export default function TopHeader({ onMenuClick }: { onMenuClick: () => void }) 
       </nav>
 
       <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+        <button
+          onClick={onDesktopToggle}
+          className="p-2 hover:bg-muted rounded-lg transition-colors flex-shrink-0 hidden md:flex"
+          title={desktopSidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          <ChevronLeft className={`w-4 sm:w-5 h-4 sm:h-5 transition-transform ${desktopSidebarCollapsed ? 'rotate-180' : ''}`} />
+        </button>
         <button
           onClick={toggleTheme}
           className="p-2 hover:bg-muted rounded-lg transition-colors flex-shrink-0"

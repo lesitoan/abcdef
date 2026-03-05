@@ -1,35 +1,62 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TopHeader from './TopHeader';
-import AdminSidebar from './AdminSidebar';
+import ResizableSidebar from './ResizableSidebar';
+
+const SIDEBAR_COLLAPSED_KEY = 'sidebar-collapsed';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [desktopSidebarCollapsed, setDesktopSidebarCollapsed] = useState(false);
+
+  // Load collapsed state from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem(SIDEBAR_COLLAPSED_KEY);
+    if (saved) {
+      setDesktopSidebarCollapsed(JSON.parse(saved));
+    }
+  }, []);
+
+  const toggleDesktopSidebar = () => {
+    const newState = !desktopSidebarCollapsed;
+    setDesktopSidebarCollapsed(newState);
+    localStorage.setItem(SIDEBAR_COLLAPSED_KEY, JSON.stringify(newState));
+  };
 
   return (
     <div className="flex flex-col h-screen bg-background">
-      <TopHeader onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
+      <TopHeader 
+        onMenuClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        onDesktopToggle={toggleDesktopSidebar}
+        desktopSidebarCollapsed={desktopSidebarCollapsed}
+      />
       <div className="flex flex-1 overflow-hidden">
         {/* Mobile sidebar overlay */}
-        {sidebarOpen && (
+        {mobileMenuOpen && (
           <div
             className="fixed inset-0 bg-black/50 z-40 md:hidden"
-            onClick={() => setSidebarOpen(false)}
+            onClick={() => setMobileMenuOpen(false)}
           />
         )}
 
-        {/* Desktop sidebar */}
-        <div className="hidden md:block">
-          <AdminSidebar />
-        </div>
-
-        {/* Mobile sidebar */}
-        {sidebarOpen && (
-          <div className="fixed inset-y-16 left-0 w-52 z-40 md:hidden">
-            <AdminSidebar />
+        {/* Mobile sidebar - full height on mobile */}
+        {mobileMenuOpen && (
+          <div className="fixed inset-y-16 left-0 z-40 md:hidden">
+            <ResizableSidebar 
+              isCollapsed={false} 
+              onToggleCollapse={() => setMobileMenuOpen(false)} 
+            />
           </div>
         )}
+
+        {/* Desktop sidebar - always visible, resizable and collapsible */}
+        <div className="hidden md:flex">
+          <ResizableSidebar 
+            isCollapsed={desktopSidebarCollapsed}
+            onToggleCollapse={toggleDesktopSidebar}
+          />
+        </div>
 
         {/* Main content */}
         <div className="flex-1 overflow-auto">
