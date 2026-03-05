@@ -1,6 +1,6 @@
 import PageHeader from './components/PageHeader';
 import TestsTable from './components/TestsTable';
-import FilterSection from '@/screens/submitsScreen/components/FilterSection';
+import FilterSection from './components/FilterSection';
 
 export const metadata = {
   title: 'V-BENCH - Upload Điểm Private Test',

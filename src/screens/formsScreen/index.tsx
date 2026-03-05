@@ -1,6 +1,6 @@
 import PageHeader from './components/PageHeader';
 import FormsTable from './components/FormsTable';
-import FilterSection from '@/screens/submitsScreen/components/FilterSection';
+import FilterSection from './components/FilterSection';
 
 export const metadata = {
   title: 'V-BENCH - Private Test Contact Forms',

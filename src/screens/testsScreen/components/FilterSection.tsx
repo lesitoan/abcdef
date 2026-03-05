@@ -7,14 +7,14 @@ import { FilterDropdown, type FilterOption } from '@/components/ui/filter-dropdo
 
 const typeOptions: FilterOption[] = [
   { label: 'Tất cả loại', value: 'all' },
-  { label: 'Hoàn thành', value: 'completed' },
-  { label: 'Đang chờ', value: 'pending' },
+  { label: 'Public Test', value: 'public' },
+  { label: 'Private Test', value: 'private' },
 ];
 
 const statusOptions: FilterOption[] = [
   { label: 'Tất cả trạng thái', value: 'all' },
-  { label: 'Chờ upload điểm', value: 'waiting' },
-  { label: 'Đã công bố', value: 'published' },
+  { label: 'Hoàn thành', value: 'completed' },
+  { label: 'Đang chờ', value: 'pending' },
   { label: 'Đang đánh giá', value: 'evaluating' },
 ];
 

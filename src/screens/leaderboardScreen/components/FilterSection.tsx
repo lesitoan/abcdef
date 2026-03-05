@@ -5,17 +5,17 @@ import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { FilterDropdown, type FilterOption } from '@/components/ui/filter-dropdown';
 
-const typeOptions: FilterOption[] = [
+const leaderboardOptions: FilterOption[] = [
   { label: 'Tất cả loại', value: 'all' },
-  { label: 'Hoàn thành', value: 'completed' },
-  { label: 'Đang chờ', value: 'pending' },
+  { label: 'Public', value: 'public' },
+  { label: 'Private', value: 'private' },
 ];
 
 const statusOptions: FilterOption[] = [
   { label: 'Tất cả trạng thái', value: 'all' },
-  { label: 'Chờ upload điểm', value: 'waiting' },
-  { label: 'Đã công bố', value: 'published' },
-  { label: 'Đang đánh giá', value: 'evaluating' },
+  { label: 'Chờ xác nhận', value: 'pending' },
+  { label: 'Đang hiển thị', value: 'active' },
+  { label: 'Ẩn khỏi LB', value: 'hidden' },
 ];
 
 export default function FilterSection() {
@@ -38,7 +38,7 @@ export default function FilterSection() {
       <div className="flex gap-3 flex-col sm:flex-row md:flex-row">
         <FilterDropdown
           label="Tất cả loại"
-          options={typeOptions}
+          options={leaderboardOptions}
           selectedValue={selectedType}
           onSelect={setSelectedType}
         />

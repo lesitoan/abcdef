@@ -1,6 +1,6 @@
 import PageHeader from './components/PageHeader';
 import LeaderboardTable from './components/LeaderboardTable';
-import FilterSection from '@/screens/submitsScreen/components/FilterSection';
+import FilterSection from './components/FilterSection';
 
 export const metadata = {
   title: 'V-BENCH - Duyệt Leaderboard',
